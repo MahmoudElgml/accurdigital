@@ -85,6 +85,9 @@ export class CategorydetalisComponent implements OnInit {
       console.log("done getSingleCategory");
     })
   }
+  ref(data:any){
+    this.refreshlist()
+  }
   intiatePreview(data:any){
     this.isClicked=!this.isClicked
     this.isDoubleClicked=false

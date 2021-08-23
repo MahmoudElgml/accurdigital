@@ -64,7 +64,7 @@
         <app-previewunit [unitid]="clickedUnitId"></app-previewunit>
     </ng-template>
     <ng-template #edit>
-        <app-editunit [editid]="doubleClickedUnitId"></app-editunit>
+        <app-editunit (saveOnClick)="ref($event)" [editid]="doubleClickedUnitId"></app-editunit>
     </ng-template>
 </section>
 <!-- <section [ngStyle]="{'width': isDoubleClicked? '25%' :'100%'}">
