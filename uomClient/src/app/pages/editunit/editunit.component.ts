@@ -1,4 +1,4 @@
-import { Component, Input,Output, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CrudserviceService } from 'src/app/services/crudservice.service';
@@ -16,7 +16,7 @@ export class EditunitComponent implements OnInit {
   saveClicked() {
     this.saveOnClick.emit('saving');
   }
-  umcsid:any
+  umcsid: any
   constructor(private _service: CrudserviceService, private _activatedRoute: ActivatedRoute) { }
   formdata: Unitformmodel = new Unitformmodel()
   unitForm = new FormGroup({
@@ -30,20 +30,31 @@ export class EditunitComponent implements OnInit {
   });
   ngOnInit(): void {
     this._service.getUnit(this.editid).subscribe(data => {
-      this.umcsid=data.umcsId
+      this.umcsid = data.umcsId
+      // console.log("hiiiiiiiiii");
 
-      console.log(data);
-      this.unitForm.setValue(data)
+        console.log(data);
+      console.log("this is " + JSON.stringify(this.formdata));
+      this.unitForm.patchValue({
+        uomKey:data.uomKey,
+        uomeCateg:data.uomeCateg,
+        uomeId:data.uomeId,
+        uomeDesc:data.uomeDesc,
+        umcsId:data.umcsId,
+        uomeCaption:data.uomeCaption,
+        uomeSysFlg:data.uomeSysFlg,
+      })
+        console.log(this.unitForm);
+
 
     })
   }
   saveChanges() {
 
     this.formdata = this.unitForm.value
-    this.formdata.uomKey=this.editid
-    this.formdata.umcsId=this.umcsid
-    console.log(this.formdata);
-    
+    this.formdata.uomKey = this.editid
+    this.formdata.umcsId = this.umcsid
+
     this._service.editUnit(this.editid, this.formdata).subscribe(data => {
       console.log(data);
       this.saveClicked()
