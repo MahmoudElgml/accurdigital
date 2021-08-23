@@ -51,12 +51,14 @@ export class CategorydetalisComponent implements OnInit {
     const id = this._activatedRoute.snapshot.params.id
     this.formdata = this.unitForm.value
     this.formdata.umcsId = id
+    this.formdata.uomKey=0
+    this.formdata.uomeId=''
+    
     this._service.addUnit(this.formdata).subscribe((res) => {
       this.toggleShow()
       console.log(res);
       this.refreshlist()
     }, (e) => {
-      console.log(this.formdata)
       console.log(e);
     })
   }

@@ -36,7 +36,6 @@ export class ListcategoriesComponent implements OnInit {
   addCategory() {
     this.toBeAdded.push(this.newCategory)
     localStorage.setItem('toBeAddedCategories',JSON.stringify(this.toBeAdded))
-
     this.data.push(this.newCategory);
     console.log(this.data);
     this.newCategory = {
