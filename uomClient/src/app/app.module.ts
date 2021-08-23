@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListcategoriesComponent } from './pages/listcategories/listcategories.component';
 import { CategorydetalisComponent } from './pages/categorydetalis/categorydetalis.component';
-import { ListunitsComponent } from './pages/listunits/listunits.component';
 import { EditunitComponent } from './pages/editunit/editunit.component';
 import { PreviewunitComponent } from './pages/previewunit/previewunit.component';
 @NgModule({
@@ -16,7 +15,6 @@ import { PreviewunitComponent } from './pages/previewunit/previewunit.component'
     HomeComponent,
     ListcategoriesComponent,
     CategorydetalisComponent,
-    ListunitsComponent,
     EditunitComponent,
     PreviewunitComponent,
   ],
