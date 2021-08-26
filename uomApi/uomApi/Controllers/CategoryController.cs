@@ -72,8 +72,18 @@ namespace uomApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SysUomcSet>> PostSysUomcSet(SysUomcSet sysUomcSet)
         {
-            var lastrecordid = _context.SysUomcSets.Max(x => x.Uomkey);
+
+            var haveElements = _context.SysUomcSets.Any();
+            long lastrecordid;
+            if (!haveElements)
+            {
+                sysUomcSet.Uomkey = 1;
+            }
+            else { 
+            lastrecordid = _context.SysUomcSets.Max(x => x.Uomkey);
             sysUomcSet.Uomkey = lastrecordid + 1;
+            }
+            sysUomcSet.UmcsId = sysUomcSet.Uomkey.ToString();
             _context.SysUomcSets.Add(sysUomcSet);
             try
             {
@@ -91,7 +101,7 @@ namespace uomApi.Controllers
                 }
             }
 
-            return CreatedAtAction("GetSysUomcSet", new { id = sysUomcSet.Uomkey }, sysUomcSet);
+            return Ok(sysUomcSet.UmcsId);
         }
 
         [HttpDelete("{id}")]

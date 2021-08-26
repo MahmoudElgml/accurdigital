@@ -9,6 +9,7 @@ import { ListcategoriesComponent } from './pages/listcategories/listcategories.c
 import { CategorydetalisComponent } from './pages/categorydetalis/categorydetalis.component';
 import { EditunitComponent } from './pages/editunit/editunit.component';
 import { PreviewunitComponent } from './pages/previewunit/previewunit.component';
+import { RecentlyaddedComponent } from './pages/recentlyadded/recentlyadded.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { PreviewunitComponent } from './pages/previewunit/previewunit.component'
     CategorydetalisComponent,
     EditunitComponent,
     PreviewunitComponent,
+    RecentlyaddedComponent,
   ],
   imports: [
     BrowserModule,

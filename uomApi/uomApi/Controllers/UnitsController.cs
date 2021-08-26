@@ -43,8 +43,8 @@ namespace uomApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSysUnitsOfMeasure(long id, SysUnitsOfMeasure sysUnitsOfMeasure)
         {
-            
-                if (id != sysUnitsOfMeasure.Uomkey)
+
+            if (id != sysUnitsOfMeasure.Uomkey)
             {
                 return BadRequest();
             }
@@ -74,8 +74,17 @@ namespace uomApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SysUnitsOfMeasure>> PostSysUnitsOfMeasure(SysUnitsOfMeasure sysUnitsOfMeasure)
         {
-            var lastrecordid = _context.SysUnitsOfMeasures.Max(x => x.Uomkey);
-            sysUnitsOfMeasure.Uomkey = lastrecordid + 1;
+            var haveElements = _context.SysUomcSets.Any();
+            long lastrecordid;
+            if (!haveElements)
+            {
+                sysUnitsOfMeasure.Uomkey = 1;
+            }
+            else
+            {
+                lastrecordid = _context.SysUomcSets.Max(x => x.Uomkey);
+                sysUnitsOfMeasure.Uomkey = lastrecordid + 1;
+            }
             _context.SysUnitsOfMeasures.Add(sysUnitsOfMeasure);
             try
             {

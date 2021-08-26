@@ -1,0 +1,24 @@
+<h4>category {{_service.currentCategory}} is empty try adding some units</h4>
+<br>
+<form [formGroup]='unitForm' #myForm="ngForm" (ngSubmit)="addcategandunit(); myForm.resetForm()"
+            class="row container-fluid ">
+            <div class="row mb-3">
+                <!-- <div class="col-4">
+                <select formControlName="uomeCateg" class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                    <option  disabled>choose category</option>
+                    <option *ngFor="let n of allcategories" [ngValue]="n.umcsDescTx">{{n.umcsDescTx}}</option>
+                  </select>
+            </div> -->
+                <div class="col-4">
+                    <label for="desc">Describtion</label>
+                    <input placeholder="Describtion" id="desc" formControlName="uomeDesc" class="form-control">
+                </div>
+                <div class="col-4">
+                    <label for="cap">Caption</label>
+                    <input placeholder="Caption" id="cap" formControlName="uomeCaption" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary">Add Now</button>
+            </div>
+        </form>

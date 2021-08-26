@@ -31,10 +31,6 @@ export class EditunitComponent implements OnInit {
   ngOnInit(): void {
     this._service.getUnit(this.editid).subscribe(data => {
       this.umcsid = data.umcsId
-      // console.log("hiiiiiiiiii");
-
-        console.log(data);
-      console.log("this is " + JSON.stringify(this.formdata));
       this.unitForm.patchValue({
         uomKey:data.uomKey,
         uomeCateg:data.uomeCateg,
@@ -45,16 +41,12 @@ export class EditunitComponent implements OnInit {
         uomeSysFlg:data.uomeSysFlg,
       })
         console.log(this.unitForm);
-
-
     })
   }
   saveChanges() {
-
     this.formdata = this.unitForm.value
     this.formdata.uomKey = this.editid
     this.formdata.umcsId = this.umcsid
-
     this._service.editUnit(this.editid, this.formdata).subscribe(data => {
       console.log(data);
       this.saveClicked()

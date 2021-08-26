@@ -15,7 +15,7 @@ export class ListcategoriesComponent implements OnInit {
   data: any = []
   toBeAdded:any=[]
   ngOnInit(): void {
-    localStorage.removeItem('toBeAddedCategories')
+    // localStorage.removeItem('toBeAddedCategories')
     this._service.getallcategories().subscribe((res) => {
       this.data = res
     }, (e) => {
@@ -29,9 +29,13 @@ export class ListcategoriesComponent implements OnInit {
     "umcsId": "",
     "umcsDescTx": ""
   };
-  onclickcategory(id:any,categoryName:string){
+  onclickcategory(umcsId:any,categoryName:string){
     this._service.currentCategory=categoryName
-    this._route.navigateByUrl(`/category/${id}`)
+    if(umcsId!=""){
+    this._route.navigateByUrl(`/category/${umcsId}`)
+    }else{
+      this._route.navigateByUrl(`/recentlyAdded`)
+    }
   }
   addCategory() {
     this.toBeAdded.push(this.newCategory)

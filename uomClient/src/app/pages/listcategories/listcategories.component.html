@@ -1,14 +1,14 @@
-<h2>List Of All Available Categories</h2>
+<h2 class="text-center">All Available Categories</h2>
 <br>
 <br>
 <div>
 <a (click)="onclickcategory(i.umcsId,i.umcsDescTx)" class="list-group-item list-group-item-action" *ngFor="let i of data">
   <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{i.umcsDescTx}}</h5>
+    <h5 class="mb-1">{{i.umcsDescTx| uppercase}}</h5>
     <small class="text-muted"></small>
   </div>
   <p class="mb-1"></p>
-  <small class="text-muted">press to show available units of measurment in the {{i.umcsDescTx}} category</small>
+  <small class="text-muted">press to show available units of measurment in the {{i.umcsDescTx |uppercase}} category</small>
 </a>
 
 </div>
@@ -17,7 +17,15 @@
 <br>
 <br>
 <br>
-<button (click)="addCategory()" class="btn btn-primary">
+<!-- <button (click)="addCategory()" class="btn btn-primary">
   <span class="fa fa-plus"></span>
   Add New Category</button>
-<input type="text" id="category" name="category" class="form-control " [(ngModel)]="newCategory.umcsDescTx">
+<input type="text" id="category" name="category" class="form-control " [(ngModel)]="newCategory.umcsDescTx"> -->
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" [(ngModel)]="newCategory.umcsDescTx" placeholder="enter category name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" (click)="addCategory()" type="button">
+      <span class="fa fa-plus"></span>Add New Category</button>
+  </div>
+</div>

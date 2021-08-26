@@ -20,11 +20,11 @@ export class CrudserviceService {
     
     return this._http.get(`${this.baseurl}/category/${id}`)
   }
-//  *********
-//   addCategory(categoryForm: any): Observable<any> {
-//     return this._http.post(`${this.baseurl}/category`, { categoryForm })
-//   }
-// **********
+
+  addCategory(categoryForm: any): Observable<any> {
+    return this._http.post(`${this.baseurl}/category`,categoryForm)
+  }
+
   // getSingleUnit(id: string): Observable<any> {
   //   return this._http.get(`${this.baseurl}/${id}`)
   // }
