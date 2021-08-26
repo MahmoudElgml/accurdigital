@@ -31,7 +31,7 @@ export class CategorydetalisComponent implements OnInit {
     uomeDesc: new FormControl(''),
     umcsId: new FormControl(),
     uomeCaption: new FormControl(''),
-    uomeSysFlg: new FormControl(''),
+    uomeSysFlg: new FormControl('Y'),
   });
   ngOnInit(): void {
     this.isShown = false;
@@ -50,6 +50,7 @@ export class CategorydetalisComponent implements OnInit {
   addNewUnit() {
         this.formdata = this.unitForm.value
         this.formdata.umcsId = this.id
+        this.formdata.uomeCateg = this._service.currentCategory
         this.formdata.uomKey = 0
         this.formdata.uomeId = ''
         this._service.addUnit(this.formdata).subscribe((res) => {

@@ -3,7 +3,7 @@
     <h2 class="text-primary h4 my-5 text-center">list of units in {{_service.currentCategory}} category</h2>
     <!-- <button routerLink="/addunit" class="btn btn-success"> -->
         <p>notes: single click to view and double click to edit</p>
-    <table class="table table-stripped">
+    <table class="table">
         <thead>
             <th>Category</th>
             <th>describtion</th>
@@ -16,7 +16,8 @@
                 <td>{{i.uomeDesc}}</td>
                 <td>{{i.uomeCaption}}</td>
                 <td>
-                    <!-- <button class="btn btn-success mx-2" ">edit</button> -->
+                    <button class="btn btn-success mx-2" 
+                    routerLink='/unitconversions/{{i.uomkey}}'> conversions</button>
                     <button class="btn btn-success mx-2" (click)="deleteunit(i.uomkey)">delete</button>
                 </td>
             </tr>
@@ -32,12 +33,6 @@
     <div *ngIf="isShown">
         <form [formGroup]='unitForm' #myForm="ngForm" (ngSubmit)="addNewUnit(); myForm.resetForm()" class="row container-fluid ">
             <div class="row mb-3">
-                <!-- <div class="col-4">
-                        <select formControlName="uomeCateg" class="form-select form-select mb-3" aria-label=".form-select-lg example">
-                            <option  disabled>choose category</option>
-                            <option *ngFor="let n of allcategories" [ngValue]="n.umcsDescTx">{{n.umcsDescTx}}</option>
-                          </select>
-                    </div> -->
                 <div class="col-4">
                     <label for="desc">Describtion</label>
                     <input placeholder="Describtion" id="desc" formControlName="uomeDesc" class="form-control">

@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+<br>
+<form [formGroup]='unitForm' #myForm="ngForm" (ngSubmit)="addNewConversion(); myForm.resetForm()"
+    class="row container-fluid ">
+    <div class="row">
+
+        <div class="col">
+            <label for="desc">From unit</label>
+            <input placeholder="{{currentunit.uomeDesc}}" id="desc" disabled  class="form-control">
+        </div>
+        <div class="col">
+            <label for="tounit">To Unit</label>
+            
+            <select id="tounit" formControlName="toUomkey" class="form-select form-select col"
+                aria-label=".form-select-lg example">
+                <option disabled>choose unit</option>
+                <option *ngFor="let n of allunits" [ngValue]="n.uomeDesc">{{n.uomeDesc}}</option>
+            </select>
+        </div>
+
+        <div class="col">
+            <label for="cap">Equation string</label>
+            <input placeholder="equation string" id="cap" formControlName="uomeCaption" class="form-control">
+        </div>
+    </div>
+    <div class="">
+        <button class="btn btn-primary">Add Now</button>
+    </div>
+</form>

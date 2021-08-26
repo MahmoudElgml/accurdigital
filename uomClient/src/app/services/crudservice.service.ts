@@ -25,15 +25,21 @@ export class CrudserviceService {
     return this._http.post(`${this.baseurl}/category`,categoryForm)
   }
 
-  // getSingleUnit(id: string): Observable<any> {
-  //   return this._http.get(`${this.baseurl}/${id}`)
-  // }
+  getSingleUnit(id: string): Observable<any> {
+    return this._http.get(`${this.baseurl}/units/${id}`)
+  }
+  getAllUnits():Observable<any>{
+    return this._http.get(`${this.baseurl}/units`)
+  }
   UnitForm:Unitformmodel=new Unitformmodel()
   getUnit(id:any): Observable<any> {
     return this._http.get(`${this.baseurl}/units/${id}`)
   }
   addUnit(data:any): Observable<any> {
     return this._http.post(`${this.baseurl}/units`,data)
+  }
+  addConversion(data:any):Observable<any>{
+    return this._http.post(`${this.baseurl}/conversions`,data)
   }
   editUnit(id:any,input: any): Observable<any> {
     return this._http.put(`${this.baseurl}/units/${id}`, input)

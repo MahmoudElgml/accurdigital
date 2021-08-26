@@ -10,6 +10,7 @@ import { CategorydetalisComponent } from './pages/categorydetalis/categorydetali
 import { EditunitComponent } from './pages/editunit/editunit.component';
 import { PreviewunitComponent } from './pages/previewunit/previewunit.component';
 import { RecentlyaddedComponent } from './pages/recentlyadded/recentlyadded.component';
+import { UnitCoversionsComponent } from './pages/unit-coversions/unit-coversions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { RecentlyaddedComponent } from './pages/recentlyadded/recentlyadded.comp
     EditunitComponent,
     PreviewunitComponent,
     RecentlyaddedComponent,
+    UnitCoversionsComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,16 @@ import { EditunitComponent } from './pages/editunit/editunit.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListcategoriesComponent } from './pages/listcategories/listcategories.component';
 import { RecentlyaddedComponent } from './pages/recentlyadded/recentlyadded.component';
+import { UnitCoversionsComponent } from './pages/unit-coversions/unit-coversions.component';
 
 const routes: Routes = [
   { path: 'categories', component: ListcategoriesComponent },
   { path: '', redirectTo: '/categories', pathMatch: 'full' },
   { path: 'recentlyAdded', component: RecentlyaddedComponent,pathMatch: 'full' },
   { path: 'category/:id', component: CategorydetalisComponent,pathMatch:'full'},
-  { path: 'editunit/:id', component: EditunitComponent }
+  { path: 'editunit/:id', component: EditunitComponent },
+  { path: 'unitconversions/:id', component: UnitCoversionsComponent }
+
 
 
 ];

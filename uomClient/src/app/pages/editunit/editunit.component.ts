@@ -40,7 +40,6 @@ export class EditunitComponent implements OnInit {
         uomeCaption:data.uomeCaption,
         uomeSysFlg:data.uomeSysFlg,
       })
-        console.log(this.unitForm);
     })
   }
   saveChanges() {
@@ -53,5 +52,6 @@ export class EditunitComponent implements OnInit {
     }, (e) => {
       console.log(e);
     })
+
   }
 }
