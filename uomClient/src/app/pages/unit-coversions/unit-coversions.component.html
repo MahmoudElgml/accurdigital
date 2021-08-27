@@ -2,27 +2,27 @@
 <br>
 <br>
 <br>
-<form [formGroup]='unitForm' #myForm="ngForm" (ngSubmit)="addNewConversion(); myForm.resetForm()"
+<form [formGroup]='unitForm' (ngSubmit)="addNewConversion()"
     class="row container-fluid ">
     <div class="row">
 
         <div class="col">
             <label for="desc">From unit</label>
-            <input placeholder="{{currentunit.uomeDesc}}" id="desc" disabled  class="form-control">
+            <input [value]="currentunit?.uomeDesc" id="desc" disabled  class="form-control">
         </div>
         <div class="col">
             <label for="tounit">To Unit</label>
             
             <select id="tounit" formControlName="toUomkey" class="form-select form-select col"
                 aria-label=".form-select-lg example">
-                <option disabled>choose unit</option>
-                <option *ngFor="let n of allunits" [ngValue]="n.uomeDesc">{{n.uomeDesc}}</option>
+                <option disabled selected>choose unit</option>
+                <option *ngFor="let n of allunits" [ngValue]='n.uomkey'>{{n.uomeDesc}}</option>
             </select>
         </div>
 
         <div class="col">
             <label for="cap">Equation string</label>
-            <input placeholder="equation string" id="cap" formControlName="uomeCaption" class="form-control">
+            <input placeholder="equation string" id="cap" formControlName="conversionFormula" class="form-control">
         </div>
     </div>
     <div class="">

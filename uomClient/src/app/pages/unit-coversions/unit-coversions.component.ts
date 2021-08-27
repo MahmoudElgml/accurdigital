@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CrudserviceService } from 'src/app/services/crudservice.service';
-import { Unitformmodel } from 'src/app/shared/unitformmodel.model';
 
 @Component({
   selector: 'app-unit-coversions',
@@ -10,37 +9,40 @@ import { Unitformmodel } from 'src/app/shared/unitformmodel.model';
   styleUrls: ['./unit-coversions.component.css']
 })
 export class UnitCoversionsComponent implements OnInit {
-// @Input() unitid:any=''
-allunits:any[]=[]
-currentunit:any
-unitid:any=this._activatedRoute.snapshot.params.id
-  constructor(private _service:CrudserviceService,private _activatedRoute:ActivatedRoute) { }
-  
+  allunits: any[] = []
+  currentunit: any
+  unitid: any = this._activatedRoute.snapshot.params.id
+  constructor(private _service: CrudserviceService, private _activatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this._service.getAllUnits().subscribe((res)=>{
-      this.allunits=res
-      this.allunits.splice(this.allunits.findIndex(i=>i.uomkey==this.unitid),1)
-    })
-    
-    this._service.getSingleUnit(this.unitid).subscribe((res)=>{
-      this.currentunit=res
+    this._service.getAllUnits().subscribe((res) => {
       console.log(res);
-      
+
+      this.allunits = res
+      this.allunits.splice(this.allunits.findIndex(i => i.uomkey == this.unitid), 1)
     })
 
+    this._service.getSingleUnit(this.unitid).subscribe((res) => {
+      console.log(res);
+      this.currentunit = res
+    })
   }
-  formdata: Unitformmodel = new Unitformmodel()
   unitForm = new FormGroup({
     uomKey: new FormControl(0),
-    fromUomkey: new FormControl(this.unitid),
-    toUomkey: new FormControl(''),
-    uomBaseNbr: new FormControl(''),
-    uomOffsetNbr: new FormControl(),
-    uomNumeratorNbr: new FormControl(''),
-    uomDenominatorNbr: new FormControl(''),
+    fromUomkey: new FormControl(Number(this.unitid)),
+    toUomkey: new FormControl(),
+    uomBaseNbr: new FormControl(1),
+    uomOffsetNbr: new FormControl(1),
+    uomNumeratorNbr: new FormControl(1),
+    uomDenominatorNbr: new FormControl(1),
+    conversionFormula: new FormControl(1),
   });
-  addNewConversion(){
-
+  addNewConversion() {
+    this._service.addConversion(this.unitForm.value).subscribe(
+      (res) => {
+        console.log(res)
+      },
+      (e) => console.log(e)
+    )
   }
-
 }

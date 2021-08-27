@@ -35,7 +35,10 @@ export class CategorydetalisComponent implements OnInit {
   });
   ngOnInit(): void {
     this.isShown = false;
-      this._service.getSingleCategory(this.id).subscribe((res) => {
+      this._service.getSingleCategory(this.id).subscribe((res)=>{
+        this._service.currentCategory=res.umcsDescTx
+      })
+      this._service.getSingleCategoryUnits(this.id).subscribe((res) => {
         this.data = res
       }, (e) => {
         console.log(e);
@@ -62,7 +65,6 @@ export class CategorydetalisComponent implements OnInit {
         })
   }
   editUnit(data: any) {
-
   }
   deleteunit(data: any) {
     this._service.deleteUnit(data).subscribe((res) => {
@@ -76,9 +78,7 @@ export class CategorydetalisComponent implements OnInit {
     this.isShown = !this.isShown;
   }
   refreshlist() {
-    const id = this._activatedRoute.snapshot.params.id
-
-    this._service.getSingleCategory(id).subscribe((res) => {
+    this._service.getSingleCategoryUnits(this.id).subscribe((res) => {
       this.data = res
     }, (e) => {
       console.log(e);

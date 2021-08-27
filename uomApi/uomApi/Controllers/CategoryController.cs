@@ -39,6 +39,20 @@ namespace uomApi.Controllers
             return new JsonResult(sysUnitsOfMeasure);
         }
 
+        [HttpGet("single/{id}")]
+        public async Task<ActionResult<SysUomcSet>> GetSingleCategory(long id)
+        {
+            var SysUomcSets = await _context.SysUomcSets.FindAsync(id);
+
+            if (SysUomcSets == null)
+            {
+                return NotFound();
+            }
+
+            return SysUomcSets;
+        }
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSysUomcSet(long id, SysUomcSet sysUomcSet)
         {

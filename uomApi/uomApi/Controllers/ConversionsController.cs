@@ -70,15 +70,15 @@ namespace uomApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SysUomeConversion>> PostSysUomeConversion(SysUomeConversion sysUomeConversion)
         {
-            var haveElements = _context.SysUomcSets.Any();
+            var haveElements = _context.SysUomeConversions.Any();
             long lastrecordid;
             if (!haveElements)
             {
-                sysUomeConversion.Uomkey = 1;
+                sysUomeConversion.Uomkey = 5;
             }
             else
             {
-                lastrecordid = _context.SysUomcSets.Max(x => x.Uomkey);
+                lastrecordid = _context.SysUomeConversions.Max(x => x.Uomkey);
                 sysUomeConversion.Uomkey = lastrecordid + 1;
             }
             _context.SysUomeConversions.Add(sysUomeConversion);
