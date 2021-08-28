@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable  } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,8 +39,12 @@ export class CrudserviceService {
   deleteUnit(id: number) {
     return this._http.delete(`${this.baseurl}/units/${id}`);
   }
+  getUnitConversions(id:any):Observable<any>{
+    return this._http.get(`${this.baseurl}/conversions/unit/${id}`)
+  }
   addConversion(data:any):Observable<any>{
     return this._http.post(`${this.baseurl}/conversions`,data)
   }
+
   
 }

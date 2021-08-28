@@ -70,18 +70,25 @@ namespace uomApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SysUomeConversion>> PostSysUomeConversion(SysUomeConversion sysUomeConversion)
         {
-            var haveElements = _context.SysUomeConversions.Any();
-            long lastrecordid;
-            if (!haveElements)
-            {
-                sysUomeConversion.Uomkey = 5;
+            var unitsConversionExist = _context.SysUomeConversions.Any(x => x.FromUomkey == sysUomeConversion.FromUomkey && x.ToUomkey == sysUomeConversion.ToUomkey);
+            
+            if (unitsConversionExist) {
+                    return Problem("unit conversion already exist",null,409);
             }
-            else
-            {
-                lastrecordid = _context.SysUomeConversions.Max(x => x.Uomkey);
-                sysUomeConversion.Uomkey = lastrecordid + 1;
+            else {
+                var haveElements = _context.SysUomeConversions.Any();
+                long lastrecordid;
+                if (!haveElements)
+                {
+                    sysUomeConversion.Uomkey = 1;
+                }
+                else
+                {
+                    lastrecordid = _context.SysUomeConversions.Max(x => x.Uomkey);
+                    sysUomeConversion.Uomkey = lastrecordid + 1;
+                }
             }
-            _context.SysUomeConversions.Add(sysUomeConversion);
+                    _context.SysUomeConversions.Add(sysUomeConversion);
             try
             {
                 await _context.SaveChangesAsync();
@@ -115,10 +122,19 @@ namespace uomApi.Controllers
 
             return NoContent();
         }
-
+        
         private bool SysUomeConversionExists(long id)
         {
             return _context.SysUomeConversions.Any(e => e.Uomkey == id);
+        }
+
+
+        [HttpGet("unit/{id}")]
+        public async Task<IEnumerable<SysUomeConversion>> GetUnitConversions(long id)
+        {
+            var data = await _context.SysUomeConversions.Where(x => x.FromUomkey == id).ToListAsync();
+            return data;
+
         }
     }
 }

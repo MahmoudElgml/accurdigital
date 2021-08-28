@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CrudserviceService } from 'src/app/services/crudservice.service';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-unit-coversions',
@@ -12,18 +14,18 @@ export class UnitCoversionsComponent implements OnInit {
   allunits: any[] = []
   currentunit: any
   unitid: any = this._activatedRoute.snapshot.params.id
+  conversions: any
   constructor(private _service: CrudserviceService, private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._service.getAllUnits().subscribe((res) => {
-      console.log(res);
-
       this.allunits = res
       this.allunits.splice(this.allunits.findIndex(i => i.uomkey == this.unitid), 1)
     })
 
+
+    this.resfreshConversions()
     this._service.getSingleUnit(this.unitid).subscribe((res) => {
-      console.log(res);
       this.currentunit = res
     })
   }
@@ -35,14 +37,27 @@ export class UnitCoversionsComponent implements OnInit {
     uomOffsetNbr: new FormControl(1),
     uomNumeratorNbr: new FormControl(1),
     uomDenominatorNbr: new FormControl(1),
-    conversionFormula: new FormControl(1),
+    conversionFormula: new FormControl(""),
   });
   addNewConversion() {
     this._service.addConversion(this.unitForm.value).subscribe(
       (res) => {
-        console.log(res)
+        this.resfreshConversions()
       },
       (e) => console.log(e)
+    )
+  }
+  resfreshConversions() {
+    this._service.getUnitConversions(this.unitid).subscribe((res) => {
+      this.conversions = res
+      this.conversions.map(
+        (x: any) => {
+          let index: any = 
+
+          x.toUomkey = this.allunits[this.allunits.findIndex(i => i.uomkey == `${x.toUomkey}`)].uomeDesc
+        }
+      )
+    }
     )
   }
 }

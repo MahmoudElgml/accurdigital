@@ -1,7 +1,22 @@
+<h4 class="text-center blue">{{currentunit?.uomeDesc |uppercase}} conversion equations</h4>
+<br>
+<table class="table">
+    <thead>
+        <th>From unit</th>
+        <th>To Unit</th>
+        <th>Formula</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of conversions">
+            <td>{{currentunit?.uomeDesc}}</td>
+            <td>{{i.toUomkey}}</td>
+            <td>(number of {{currentunit?.uomeDesc}}){{i.conversionFormula}}</td>
+        </tr>
+    </tbody>
+</table>
 <br>
 <br>
-<br>
-<br>
+
 <form [formGroup]='unitForm' (ngSubmit)="addNewConversion()"
     class="row container-fluid ">
     <div class="row">
@@ -13,9 +28,9 @@
         <div class="col">
             <label for="tounit">To Unit</label>
             
-            <select id="tounit" formControlName="toUomkey" class="form-select form-select col"
+            <select id="tounit" formControlName="toUomkey" class="form-select "
                 aria-label=".form-select-lg example">
-                <option disabled selected>choose unit</option>
+                <option selected disabled >choose unit</option>
                 <option *ngFor="let n of allunits" [ngValue]='n.uomkey'>{{n.uomeDesc}}</option>
             </select>
         </div>
