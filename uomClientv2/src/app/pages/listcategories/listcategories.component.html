@@ -1,0 +1,27 @@
+<table class="table table-stripped">
+    <tr>
+        <th class="text-center bg-warning ">All Categories</th>
+    </tr>
+    <br>
+    <br>
+    <tbody>
+        <tr class="text-center sel " *ngFor="let i of categoriesData" routerLink="/category/{{i.uomeCateg}}">
+            <td class="rounded my-3">{{i.uomeCateg |uppercase}}</td>
+        </tr>
+        <tr>
+            <td>
+                <Form [formGroup]="formData">
+                    <p class="error val"
+                        *ngIf="uomeCateg?.errors?.whitespace && (uomeCateg?.touched ||uomeCateg?.dirty) ">*please enter
+                        meaningful name</p>
+                    <p class="error val"
+                        *ngIf="uomeCateg?.errors?.dublicated && (uomeCateg?.touched ||uomeCateg?.dirty) ">*category
+                        already exists</p>
+                    <input type="text" class="form-control" formControlName='uomeCateg' placeholder="new category name">
+                    <button class="btn btn-primary" (click)="addCategoryOnSubmit()" type="submit"><span
+                            class="fa fa-plus"></span> Add Categort</button>
+                </Form>
+            </td>
+        </tr>
+    </tbody>
+</table>

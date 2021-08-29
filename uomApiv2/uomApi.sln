@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uomApi", "uomApi\uomApi.csproj", "{6707FC25-C30B-4BD0-8BD5-AA8664EBC6FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6707FC25-C30B-4BD0-8BD5-AA8664EBC6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6707FC25-C30B-4BD0-8BD5-AA8664EBC6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6707FC25-C30B-4BD0-8BD5-AA8664EBC6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6707FC25-C30B-4BD0-8BD5-AA8664EBC6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B868C9B-C08D-4CDC-9680-3C3A2FA60606}
+	EndGlobalSection
+EndGlobal

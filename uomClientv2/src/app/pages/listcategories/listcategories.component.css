@@ -1,0 +1,24 @@
+table
+{
+    border-collapse: separate;
+    border-spacing:0px 1px;
+}
+th {
+  height: auto;
+  font-size: 2rem;
+}
+td {
+  background-color:#1d87a18c;
+  height: auto;
+  font-size: 2rem;
+}
+.sel:hover{
+
+  background-color:#0f30388c;
+  color: aliceblue;
+  font-weight: bold;
+}
+.val{
+  font-size: 1rem !important;
+  color: red;
+}
