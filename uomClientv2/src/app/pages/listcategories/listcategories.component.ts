@@ -24,37 +24,32 @@ export class ListcategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.refreshCategories()
     this.defaultformData = this.formData.value
-    console.log( this.categoriesData.findIndex((x:any)=>x.uomeCateg=="metric"))
-    
+    console.log(this.categoriesData.findIndex((x: any) => x.uomeCateg == "metric"))
   }
+
+  addCategoryOnSubmit() {
+    if (!this.uomeCateg?.errors) {
+      this._service.addUnit(this.formData.value).subscribe(
+        (res) => {
+          this.formData.reset(this.defaultformData);
+          console.log(res)
+          this.categoriesData.push(this.formData.value)
+    })}
+  }
+
+  refreshCategories() {
+    this._service.getCategories().subscribe(
+      (res) => { this.categoriesData = res }
+  )}
 
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
   }
-
   public noDuoblicateCategory(control: FormControl) {
-    const isDublicate = this.categoriesData.findIndex((x:any)=>x.uomeCateg==control.value)===-1
-    // const isValid = !isDublicate;
+    const isDublicate = this.categoriesData.findIndex((x: any) => x.uomeCateg == control.value) === -1
     return isDublicate ? null : { 'dublicated': true };
   }
-  addCategoryOnSubmit() {
-    if (!this.uomeCateg?.errors) {
-      this._service.addUnit(this.formData.value).subscribe(
-        (res) => {
-          console.log(res)
-          // this.refreshCategories()
-          this.categoriesData.push(this.formData.value)
-          this.formData.reset(this.defaultformData);
-        })
-    }
-  }
-  refreshCategories() {
-    this._service.getCategories().subscribe(
-      (res) => { this.categoriesData = res }
-    )
-  }
-
   get uomeCateg() { return this.formData.get('uomeCateg') }
 }

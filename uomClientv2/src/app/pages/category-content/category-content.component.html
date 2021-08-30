@@ -12,14 +12,14 @@
       </tr>
     </thead>
     <tbody #tbody>
-      <tr class="unit-list" *ngFor="let i of categoryContent;index as x" >
+      <tr class="unit-list" *ngFor="let i of categoryContent;index as x" (dblclick)="replaceOnClick(x,i.uomkey)">
         <td>{{i.uomeCateg}}</td>
         <td>{{i.uomeId}}</td>
         <td>{{i.uomeCaption}}</td>
         <td>
           <button class="btn btn-danger mx-1" (click)='onDeleteUnit(i.uomkey)'><span class="fa fa-trash">
             </span></button>
-          <button class="btn btn-primary" (click)="replaceOnClick(x,i.uomkey)"><span class="fa fa-edit"></span></button>
+          <button class="btn btn-primary" ><span class="fa fa-edit"></span></button>
         </td>
       </tr>
       <tr class="unitform">

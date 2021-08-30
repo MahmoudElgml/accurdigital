@@ -24,7 +24,7 @@ export class CategoryContentComponent implements OnInit {
     uomeDesc: new FormControl(""),
     uomeCaption: new FormControl(""),
     uomeSysFlg: new FormControl("Y"),
-    umcsId: new FormControl("")
+    umcsId: new FormControl(""),
   })
 
   formDataEdit = new FormGroup({
@@ -65,19 +65,17 @@ export class CategoryContentComponent implements OnInit {
       (res) => {
         console.log(res)
         this.refreshList(this.search)
+        this.formData.reset(this.defaultformData);
         let template = this.edit.nativeElement
         const par = this.tbody.first.nativeElement
-        this._renderer.removeChild(par, template)
-        this.formData.reset(this.defaultformData);
+        try{this._renderer.removeChild(par, template)}catch{}
       })
   }
   onSaveChanges() {
     this._service.editUnit(this.formDataEdit.get('uomkey')?.value, this.formDataEdit.value).subscribe((res) => {
-      console.log(res);
       this.isChangesSaved = true
-      this.refreshList(this.search)
-
-    })
+      console.log(res);
+      this.refreshList(this.search)})
     let template = this.edit.nativeElement
     const par = this.tbody.first.nativeElement
     this._renderer.removeChild(par, template)
@@ -86,13 +84,9 @@ export class CategoryContentComponent implements OnInit {
     this._service.deleteUnit(id).subscribe((res) => {
       console.log(res);
       this.refreshList(this.search)
-    })
-
-  }
+  })}
   refreshList(data: any) {
     this._service.getCategoryUnits(data).subscribe(
       (res) => { this.categoryContent = res }
     )
-  }
-
-}
+  }}

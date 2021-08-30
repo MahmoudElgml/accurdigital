@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UnitcrudService {
- public allcategoreis:any[]=[]
   baseURL='http://localhost:51044/api'
   constructor(private _http:HttpClient) { }
   getCategories():Observable<any>{
