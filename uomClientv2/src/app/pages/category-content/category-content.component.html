@@ -1,62 +1,53 @@
 <br>
 <h4>Category {{search | uppercase}}</h4>
 <br>
-<form [formGroup]="formData" >
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Category</th>
-      <th scope="col">Unit name</th>
-      <th scope="col">Caption</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="unit-list" *ngFor="let i of categoryContent">
-      <td>{{i.uomeCateg}}</td>
-      <td>{{i.uomeId}}</td>
-      <td>{{i.uomeCaption}}</td>
-      <td>
-        <button class="btn btn-danger mx-1" (click)='onDeleteUnit(i.uomkey)'><span class="fa fa-trash"> </span></button>  
-        <button class="btn btn-primary"><span class="fa fa-edit"></span></button>
-      </td>
-    </tr>
-    <tr class="unitform">
-      <td>
-        <input type="text" class="form-control" value="{{search}}" disabled>
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName='uomeId' placeholder="unit name">
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName='uomeCaption' placeholder="caption">
-      </td>
-      <td>
-        <button class="btn btn-primary" (click)="addUnitOnSubmit()" type="submit"><span class="fa fa-plus"></span> Add Unit</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<form [formGroup]="formData">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Unit name</th>
+        <th scope="col">Caption</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody #tbody>
+      <tr class="unit-list" *ngFor="let i of categoryContent;index as x" >
+        <td>{{i.uomeCateg}}</td>
+        <td>{{i.uomeId}}</td>
+        <td>{{i.uomeCaption}}</td>
+        <td>
+          <button class="btn btn-danger mx-1" (click)='onDeleteUnit(i.uomkey)'><span class="fa fa-trash">
+            </span></button>
+          <button class="btn btn-primary" (click)="replaceOnClick(x,i.uomkey)"><span class="fa fa-edit"></span></button>
+        </td>
+      </tr>
+      <tr class="unitform">
+        <td>
+          <input type="text" class="form-control" value="{{search}}" disabled>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName='uomeId' placeholder="unit name">
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName='uomeCaption' placeholder="caption">
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="addUnitOnSubmit()" type="submit"><span class="fa fa-plus"></span> Add
+            Unit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </form>
-<!-- <div class="col-10">
-  <form [formGroup]="formData" (ngSubmit)="addUnitOnSubmit() ">
-    <table class="table">
-      <tbody>
-        <tr>
-          <td>
-            <input type="text" class="form-control" value="{{search}}" disabled>
-          </td>
-          <td>
-            <input type="text" class="form-control" formControlName='uomeId' placeholder="unit name">
-          </td>
-          <td>
-            <input type="text" class="form-control" formControlName='uomeCaption' placeholder="caption">
-          </td>
-          <td>
-            <button class="btn btn-primary" type="submit"><span class="fa fa-plus"></span> Add Unit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-</div> -->
+
+<tr #edit hidden class=" text-center">
+  <td colspan="4">
+    <form class="row" [formGroup]="formDataEdit">
+      <div class="col"><input class="form-control" formControlName='uomeCateg' type="text"></div>
+      <div class="col"><input class="form-control" formControlName='uomeId' type="text"></div>
+      <div class="col"><input class="form-control" formControlName='uomeCaption' type="text"></div>
+      <div class="col"><button class="btn btn-primary" (click)="onSaveChanges()"> save changes</button></div>
+    </form>
+  </td>
+</tr>
